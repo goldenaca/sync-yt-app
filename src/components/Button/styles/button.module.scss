@@ -1,0 +1,48 @@
+@use "../../../styles/global.scss" as *;
+
+.default {
+  font-size: 14px;
+  margin-right: 24px;
+  height: 35px;
+  border-radius: 20px;
+  padding: 5px;
+  width: 160px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 900;
+  transition: 0.2s;
+  background-color: $dark-gray;
+  outline: 2px solid #e4edff;
+  color: #e4edff;
+
+  &:hover {
+    transition: 0.2s;
+    letter-spacing: 1px;
+    background-color: #e4edff;
+    color: black;
+    outline: 2px solid #e4edff;
+  }
+}
+
+.join {
+  border: none;
+  outline: none;
+  color: #e4edff;
+  background-color: $dark-gray;
+  font-weight: 900;
+  padding: 0 24px;
+  cursor: pointer;
+  border-radius: 20px;
+  height: 100%;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  border: 2px solid $dark-gray;
+
+  &:hover {
+    transition: 0.3s;
+    background-color: #e4edff;
+    color: $dark-gray;
+    border: 2px solid $dark-gray;
+  }
+}

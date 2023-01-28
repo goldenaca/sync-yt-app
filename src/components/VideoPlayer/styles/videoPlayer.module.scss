@@ -1,0 +1,28 @@
+.videoContainer {
+  margin: auto;
+  padding: 0px 240px;
+  width: 100%;
+  transition: 1s;
+}
+
+.pLeft {
+  padding-left: 504px;
+  padding-right: 60px;
+}
+
+.pRight {
+  padding-right: 504px;
+  padding-left: 60px;
+}
+
+.pRightLeft {
+  padding: 0px 494px;
+}
+
+.videoDisplay {
+  border-radius: 3px;
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 20px, rgba(0, 0, 0, 0.3) 0px 6px 6px;
+}
