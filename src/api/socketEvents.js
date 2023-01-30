@@ -26,7 +26,6 @@ export function sendPlayerEvent({ socket, roomId, currentTime, eventNum }) {
     1: "PLAY",
     2: "PAUSE",
   };
-
   socket.emit("serverEventsHandler", {
     type: "playerEvent",
     event: event[eventNum],

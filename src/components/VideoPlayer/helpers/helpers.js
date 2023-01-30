@@ -30,7 +30,8 @@ export const handleOnPlayerChange = ({
     return;
   }
   if (event !== 1 && event !== 2) return;
-  const currentTime = player.currentTime;
+  const currentTime = player.current.playerInfo.currentTime;
+
   sendPlayerEvent({
     socket,
     roomId,
@@ -60,7 +61,7 @@ export function recievePlayerEvent({
 export function recieveRoomDataEvent({ player, currentData, eventToAvoid }) {
   let videoId = player.current.playerInfo.videoData.video_id;
   if (currentData.newVideoId !== videoId) {
-    loadVideoHandler({ player, currentData });
+    loadVideoHandler({ player, currentData, eventToAvoid });
     if (currentData.state === 1) eventToAvoid.current = 1;
     if (currentData.state === 2) {
       eventToAvoid.current = 2;
