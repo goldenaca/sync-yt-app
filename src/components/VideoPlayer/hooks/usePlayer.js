@@ -29,6 +29,7 @@ export const usePlayer = () => {
     const playerState = player.current;
     function onPlayerStateChange(playerEvent) {
       let event = playerEvent.data;
+      console.log("event: ", eventToAvoid, " Player: ", event);
       handleOnPlayerChange({ eventToAvoid, event, socket, roomId, player });
     }
 
@@ -42,6 +43,8 @@ export const usePlayer = () => {
   useEffect(() => {
     if (!socket || !roomId) return;
     socket.on(playerChannel, ({ type, event, currentData }) => {
+      console.log("RECIBIDO: ", type, event, currentData);
+
       if (type === "playerEvent") {
         recievePlayerEvent({ event, eventToAvoid, player, currentData });
       }
