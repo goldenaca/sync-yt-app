@@ -1,0 +1,30 @@
+@use "../../../../styles/global.scss" as *;
+
+.showBtn {
+  margin-top: 100px;
+  position: relative;
+  background-color: $dark-gray;
+  width: 40px;
+  height: 100px;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: rgba(8, 8, 8, 0.4) -4px 4px 6px 0px;
+
+  &:hover {
+    transition: 0.3s;
+    background: $dark-gray;
+    background: linear-gradient(90deg, $light-gray 0%, $dark-gray 100%);
+  }
+}
+
+.tag {
+  top: 40px;
+  left: -5px;
+  position: absolute;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  rotate: 270deg;
+}

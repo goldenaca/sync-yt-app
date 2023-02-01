@@ -23,7 +23,7 @@ const NavBar = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.logoSearchContainer}>
-        <img src={logo} className={styles.appLogo} alt="logo" />
+        <img src={logo} className={styles.logo} alt="logo" />
         <h2 className={styles.navTitle}> Sync YT videos</h2>
         <input
           type="search"

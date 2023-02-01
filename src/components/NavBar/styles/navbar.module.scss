@@ -85,7 +85,7 @@
   padding-left: 12px;
 }
 
-.appLogo {
+.logo {
   height: 40px;
   pointer-events: none;
 }
@@ -96,7 +96,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .app-logo {
+  .logo {
     animation: App-logo-spin infinite 10s linear;
   }
 }
