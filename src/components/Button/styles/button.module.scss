@@ -46,3 +46,20 @@
     border: 2px solid $dark-gray;
   }
 }
+
+.send-message {
+  border: none;
+  background-color: $light-blue;
+  font-weight: bold;
+  cursor: pointer;
+  height: 100%;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  color: $dark-gray;
+  padding: 0px 24px;
+
+  &:hover {
+    transition: 0.3s;
+    background-color: aliceblue;
+  }
+}
