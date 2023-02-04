@@ -21,5 +21,5 @@ export const createYTScript = () =>
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.append(tag);
-    setTimeout(() => resolve(true), 2000);
+    setTimeout(() => resolve(true), 1000);
   });

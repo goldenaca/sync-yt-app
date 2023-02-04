@@ -7,8 +7,8 @@ export const useLoadPlayerAndSocket = () => {
   const [mySocket, setMySocket] = useState({});
 
   async function initialLoad() {
-    const socket = await socketConnect();
     await createYTScript();
+    const socket = await socketConnect();
     setMySocket(socket);
     setLoadYoutubeApi(true);
   }
