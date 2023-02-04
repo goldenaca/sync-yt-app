@@ -1,8 +1,8 @@
 @use "../../../../styles/global.scss" as *;
 
 .container {
-  height: 80%;
-  background: aliceblue;
+  height: 100%;
+  background: $dark-gray;
   min-height: 200px;
   width: 100%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
