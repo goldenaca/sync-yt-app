@@ -8,7 +8,7 @@ export const ProfileSection = () => {
     <div className={styles.container}>
       <div className={styles.userContainer}>
         <img alt="user" src={avatarImage} className={styles.avatar} />
-        <p className={styles.user}> User 21145</p>
+        <p className={styles.user}> User 21145 </p>
       </div>
       <FaEdit title="Edit username" className={styles.edit} />
     </div>
