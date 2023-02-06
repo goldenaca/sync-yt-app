@@ -1,6 +1,7 @@
 @use "../../../../styles/global.scss" as *;
 
 .container {
+  padding: 12px;
   height: 100%;
   background: $dark-gray;
   min-height: 200px;

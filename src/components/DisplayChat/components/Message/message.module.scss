@@ -1,1 +1,54 @@
 @use "../../../../styles/global.scss" as *;
+
+.external {
+  margin-bottom: 12px;
+
+  p {
+    margin-left: 8px;
+    margin-bottom: 4px;
+    font-weight: bold;
+  }
+
+  div {
+    background-color: #82ccdd;
+    max-width: 75%;
+    border-radius: 8px;
+    padding: 8px;
+    color: $dark-gray;
+    font-size: 16px;
+  }
+}
+
+.internal {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-end;
+
+  p {
+    display: none;
+  }
+
+  div {
+    background-color: #78e08f;
+    max-width: 75%;
+    border-radius: 8px;
+    padding: 8px;
+    color: $dark-gray;
+    font-size: 16px;
+  }
+}
+
+.event {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+
+  div {
+    background-color: $light-gray;
+    max-width: 75%;
+    border-radius: 4px;
+    padding: 12px;
+    color: aliceblue;
+    font-size: 16px;
+  }
+}
