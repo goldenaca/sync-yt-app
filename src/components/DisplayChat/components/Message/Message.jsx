@@ -5,8 +5,14 @@ import styles from "./message.module.scss";
 export const Message = ({ content, type, username }) => {
   return (
     <div className={styles[type]}>
-      <p>{username}</p>
-      <div>{content}</div>
+      {type === "event" ? (
+        <div>{`${username} ${content}`}</div>
+      ) : (
+        <>
+          <p className={styles.name}>{username}</p>
+          <div className={styles.content}>{content}</div>
+        </>
+      )}
     </div>
   );
 };
