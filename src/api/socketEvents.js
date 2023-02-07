@@ -1,8 +1,8 @@
-import { playerChannel } from "../utilites/constant";
+import { chatChannel, playerChannel, roomsChannel } from "../utilites/constant";
 
 export function sendChangeVideoEvent({ roomId, socket, newVideoId }) {
   if (!roomId) return;
-  socket.emit("serverEventsHandler", {
+  socket.emit(playerChannel, {
     type: "loadVideo",
     roomId,
     currentData: { newVideoId },
@@ -26,7 +26,7 @@ export function sendPlayerEvent({ socket, roomId, currentTime, eventNum }) {
     1: "PLAY",
     2: "PAUSE",
   };
-  socket.emit("serverEventsHandler", {
+  socket.emit(playerChannel, {
     type: "playerEvent",
     event: event[eventNum],
     roomId,
@@ -35,9 +35,13 @@ export function sendPlayerEvent({ socket, roomId, currentTime, eventNum }) {
 }
 
 export function createRoomEvent({ id, socket }) {
-  socket.emit("roomHandler", { id, type: "new" });
+  socket.emit(roomsChannel, { id, type: "new" });
 }
 
 export function joinRoomEvent({ id, socket }) {
-  socket.emit("roomHandler", { id, type: "join" });
+  socket.emit(roomsChannel, { id, type: "join" });
+}
+
+export function sendMessageEvent({ socket, user, type, message }) {
+  socket.emit(chatChannel, { type, user, message });
 }

@@ -1,16 +1,50 @@
-import { useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { sendMessageEvent } from "../../../api/socketEvents";
+import { PlayerContext } from "../../../contexts/PlayerProvider";
 import { chatChannel } from "../../../utilites/constant";
 
-export const useChat = ({ roomId, socket, messagesList }) => {
+export const useChat = () => {
+  const [inputState, setInputState] = useState("");
+  const { values, action } = useContext(PlayerContext);
+  const { showChat, messagesList, socket, roomId, user } = values;
+
+  const handleOpenChat = useCallback(() => {
+    action.setShowChat(!showChat);
+  }, [action, showChat]);
+
+  const handleSendMessage = useCallback(
+    (e) => {
+      e.preventDefault();
+      sendMessageEvent({ socket, user, message: inputState, type: "user" });
+      action.setMessagesList((prev) => [
+        ...prev,
+        {
+          messageType: "internal",
+          messageContent: inputState,
+          messageOwner: user,
+        },
+      ]);
+      setInputState("");
+    },
+    [action, inputState, socket, user]
+  );
+
   useEffect(() => {
     if (!socket || !roomId) return;
 
-    socket.on(chatChannel, () => {
-      console.log("chat loaded");
+    socket.on(chatChannel, (message) => {
+      action.setMessagesList((prev) => [...prev, message]);
     });
 
     return () => socket.off(chatChannel);
-  }, [roomId, socket]);
+  }, [action, roomId, socket]);
 
-  return {};
+  return {
+    handleOpenChat,
+    handleSendMessage,
+    setInputState,
+    inputState,
+    showChat,
+    messagesList,
+  };
 };

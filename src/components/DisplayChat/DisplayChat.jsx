@@ -1,5 +1,4 @@
-import React, { useCallback, useContext } from "react";
-import { PlayerContext } from "../../contexts/PlayerProvider";
+import React from "react";
 import { Chat } from "./components/Chat/Chat";
 import { ChatTag } from "./components/ChatTag/ChatTag";
 import { ProfileSection } from "./components/ProfileSection/ProfileSection";
@@ -8,17 +7,14 @@ import { useChat } from "./hooks/useChat";
 import styles from "./styles/displayChat.module.scss";
 
 const DisplayChat = () => {
-  const { values, action } = useContext(PlayerContext);
-  const { showChat, messagesList, socket, roomId } = values;
-  useChat({ socket, messagesList, roomId });
-
-  const handleOpenChat = useCallback(() => {
-    action.setShowChat(!showChat);
-  }, [action, showChat]);
-
-  const handleSendMessage = useCallback((e) => {
-    e.preventDefault();
-  }, []);
+  const {
+    handleOpenChat,
+    handleSendMessage,
+    setInputState,
+    showChat,
+    messagesList,
+    inputState,
+  } = useChat();
 
   return (
     <div className={showChat ? styles.visible : styles.hidden}>
@@ -26,7 +22,11 @@ const DisplayChat = () => {
       <div className={styles.chatContainer}>
         <ProfileSection />
         <Chat messagesList={messagesList} />
-        <SendMessage handleSendMessage={handleSendMessage} />
+        <SendMessage
+          handleSendMessage={handleSendMessage}
+          setInputState={setInputState}
+          inputState={inputState}
+        />
       </div>
     </div>
   );
