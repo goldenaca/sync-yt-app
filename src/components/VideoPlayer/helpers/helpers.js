@@ -18,21 +18,25 @@ export const createPlayer = ({ player, playerContainer }) => {
   });
 };
 
+export const avoidEventHandler = ({ event, eventToAvoid }) => {
+  if (eventToAvoid.current) {
+    if (eventToAvoid.current === event) eventToAvoid.current = null;
+    return true;
+  }
+  if (event !== 1 && event !== 2) return true;
+  return false;
+};
+
 export const handleOnPlayerChange = ({
-  eventToAvoid,
   event,
   socket,
   roomId,
   player,
+  user,
 }) => {
-  if (eventToAvoid.current) {
-    if (eventToAvoid.current === event) eventToAvoid.current = null;
-    return;
-  }
-  if (event !== 1 && event !== 2) return;
   const currentTime = player.current.playerInfo.currentTime;
-
   sendPlayerEvent({
+    user,
     socket,
     roomId,
     currentTime,

@@ -4,6 +4,7 @@ import { loadVideoHandler } from "../../../contexts/helpers/helpers";
 import { PlayerContext } from "../../../contexts/PlayerProvider";
 import { playerChannel } from "../../../utilites/constant";
 import {
+  avoidEventHandler,
   createPlayer,
   handleOnPlayerChange,
   recievePlayerEvent,
@@ -14,8 +15,15 @@ export const usePlayer = () => {
   const playerContainer = useRef(null);
   const eventToAvoid = useRef(null);
   const { values } = useContext(PlayerContext);
-  const { player, socket, roomId, searchResult, isPlayerAPILoaded, showChat } =
-    values;
+  const {
+    player,
+    socket,
+    roomId,
+    searchResult,
+    isPlayerAPILoaded,
+    showChat,
+    user,
+  } = values;
 
   //    Create player component
   useEffect(() => {
@@ -27,18 +35,20 @@ export const usePlayer = () => {
   useEffect(() => {
     if (!isPlayerAPILoaded || !roomId) return;
     const playerState = player.current;
-    function onPlayerStateChange(playerEvent) {
-      let event = playerEvent.data;
-      handleOnPlayerChange({ eventToAvoid, event, socket, roomId, player });
+
+    function onPlayerStateChange(event) {
+      const shouldAvoid = avoidEventHandler({ event, eventToAvoid });
+      if (shouldAvoid) return;
+      handleOnPlayerChange({ event, socket, roomId, player, user });
     }
 
     playerState.addEventListener("onStateChange", onPlayerStateChange);
     return () => {
       playerState.removeEventListener("onStateChange", onPlayerStateChange);
     };
-  }, [isPlayerAPILoaded, player, roomId, socket]);
+  }, [isPlayerAPILoaded, player, roomId, socket, user]);
 
-  //    Create socket listeneer
+  // Create socket listeneer
   useEffect(() => {
     if (!socket || !roomId) return;
     socket.on(playerChannel, ({ type, event, currentData }) => {

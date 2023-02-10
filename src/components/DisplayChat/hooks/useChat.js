@@ -5,6 +5,8 @@ import { chatChannel } from "../../../utilites/constant";
 
 export const useChat = () => {
   const [inputState, setInputState] = useState("");
+  const [userInput, setUserInput] = useState("");
+  const [editView, setEditView] = useState(false);
   const { values, action } = useContext(PlayerContext);
   const { showChat, messagesList, socket, roomId, user } = values;
 
@@ -12,10 +14,24 @@ export const useChat = () => {
     action.setShowChat(!showChat);
   }, [action, showChat]);
 
+  const toggleEditView = useCallback(() => {
+    setEditView((prev) => !prev);
+  }, []);
+
+  const updateUser = useCallback(
+    (e) => {
+      e.preventDefault();
+      action.setUser(userInput);
+      toggleEditView();
+      setUserInput("");
+    },
+    [action, toggleEditView, userInput]
+  );
+
   const handleSendMessage = useCallback(
     (e) => {
       e.preventDefault();
-      sendMessageEvent({ socket, user, message: inputState, type: "user" });
+      sendMessageEvent({ socket, user, message: inputState, roomId });
       action.setMessagesList((prev) => [
         ...prev,
         {
@@ -26,7 +42,7 @@ export const useChat = () => {
       ]);
       setInputState("");
     },
-    [action, inputState, socket, user]
+    [action, inputState, roomId, socket, user]
   );
 
   useEffect(() => {
@@ -43,6 +59,12 @@ export const useChat = () => {
     handleOpenChat,
     handleSendMessage,
     setInputState,
+    toggleEditView,
+    updateUser,
+    setUserInput,
+    userInput,
+    user,
+    editView,
     inputState,
     showChat,
     messagesList,

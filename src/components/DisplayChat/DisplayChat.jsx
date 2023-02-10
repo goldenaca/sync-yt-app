@@ -11,16 +11,29 @@ const DisplayChat = () => {
     handleOpenChat,
     handleSendMessage,
     setInputState,
+    toggleEditView,
+    updateUser,
+    setUserInput,
+    userInput,
     showChat,
     messagesList,
     inputState,
+    editView,
+    user,
   } = useChat();
 
   return (
     <div className={showChat ? styles.visible : styles.hidden}>
       <ChatTag handleOpenChat={handleOpenChat} />
       <div className={styles.chatContainer}>
-        <ProfileSection />
+        <ProfileSection
+          userInput={userInput}
+          setUserInput={setUserInput}
+          editView={editView}
+          toggleEditView={toggleEditView}
+          updateUser={updateUser}
+          user={user}
+        />
         <Chat messagesList={messagesList} />
         <SendMessage
           handleSendMessage={handleSendMessage}

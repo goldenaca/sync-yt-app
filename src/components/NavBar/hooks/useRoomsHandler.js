@@ -10,7 +10,7 @@ export const useRoomsHandler = () => {
   const [type, setType] = useState("");
   const joinInputRef = useRef();
   const { values, action } = useContext(PlayerContext);
-  const { socket, roomId, searchResult, player } = values;
+  const { socket, roomId, searchResult, player, user } = values;
 
   function joinHandler(e) {
     e.preventDefault();
@@ -20,7 +20,7 @@ export const useRoomsHandler = () => {
     }
     action.setRoomId(joinRoomId);
     setType("room");
-    joinRoomEvent({ id: joinRoomId, socket });
+    joinRoomEvent({ id: joinRoomId, socket, user });
   }
 
   function createHandler() {
@@ -37,7 +37,7 @@ export const useRoomsHandler = () => {
   const onSearchBarChange = async (e) => {
     const value = e.target.value;
     if (value === "") return action.setSearchResult([]);
-    checkIfIsUrl({ value, setSearchBar, player, roomId, socket });
+    checkIfIsUrl({ value, setSearchBar, player, roomId, socket, user });
     const listVideos = await getYoutubeVideos(value);
     const normalizedListVideos = normalizedVideosInfo(listVideos);
     action.setSearchResult(normalizedListVideos);
