@@ -8,12 +8,18 @@ export function loadVideoHandler({ player, currentData, eventToAvoid }) {
   eventToAvoid.current = 1;
 }
 
-export function loadLocalVideoHandler({ player, roomId, socket, newVideoId }) {
+export function loadLocalVideoHandler({
+  player,
+  roomId,
+  socket,
+  newVideoId,
+  user,
+}) {
   if (typeof player.current?.loadVideoById !== "function") return;
   const { currentTime } = player.current.playerInfo;
   player.current.loadVideoById(newVideoId);
   if (!roomId) return;
-  sendChangeVideoEvent({ roomId, socket, newVideoId, currentTime });
+  sendChangeVideoEvent({ roomId, socket, newVideoId, currentTime, user });
 }
 
 export const createYTScript = () =>

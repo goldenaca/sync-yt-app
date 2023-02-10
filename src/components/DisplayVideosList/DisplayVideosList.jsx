@@ -5,10 +5,10 @@ import styles from "./styles/displayvideos.module.scss";
 
 export const DisplayVideosList = () => {
   const { values, action } = useContext(PlayerContext);
-  const { roomId, socket, searchResult, player } = values;
+  const { roomId, socket, searchResult, player, user } = values;
 
   const submitVideoHandler = (id) => {
-    loadLocalVideoHandler({ roomId, player, socket, newVideoId: id });
+    loadLocalVideoHandler({ roomId, player, socket, newVideoId: id, user });
     action.setSearchResult(["clearSearchInput"]);
   };
 
