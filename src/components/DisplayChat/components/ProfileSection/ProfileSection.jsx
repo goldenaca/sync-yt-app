@@ -26,7 +26,7 @@ export const ProfileSection = ({
           <Button text="Change!" type="send-message" buttonType="submit" />
           <CgCloseO
             onClick={toggleEditView}
-            title="Cancel edit"
+            title="Cancel edit."
             className={styles.cancel}
           />
         </form>
@@ -38,7 +38,7 @@ export const ProfileSection = ({
           </div>
           <FaEdit
             onClick={toggleEditView}
-            title="Edit username"
+            title="Edit username."
             className={styles.edit}
           />
         </>
